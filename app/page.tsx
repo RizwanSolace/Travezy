@@ -1,0 +1,58 @@
+'use client'
+
+import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowDown, ArrowRight, ArrowUpRight, Building2, Check, Compass, Heart, HeartHandshake, MapPin, Plane, Sparkles, Users } from 'lucide-react'
+import Link from 'next/link'
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
+import { TripPlanner } from '@/components/trip-planner'
+
+const destinations = [
+  { slug: 'japan', name: 'Japan, slowly', place: 'Kyoto · Hakone · Tokyo', tag: 'Culture & craft', image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=85' },
+  { slug: 'bali', name: 'A little more Bali', place: 'Ubud · Sidemen · Uluwatu', tag: 'Island time', image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=85' },
+  { slug: 'italy', name: 'The long way through Italy', place: 'Rome · Florence · Amalfi', tag: 'For together time', image: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=85' },
+  { slug: 'rajasthan', name: 'Colourful Rajasthan', place: 'Jaipur · Jodhpur · Udaipur', tag: 'India, in colour', image: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1000&q=85' },
+  { slug: 'switzerland', name: 'Into the Swiss Alps', place: 'Lucerne · Interlaken · Zermatt', tag: 'Mountain air', image: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1200&q=85' },
+  { slug: 'kerala', name: 'Kerala, at an easy pace', place: 'Kochi · Munnar · Alleppey', tag: 'A slower India', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=85' },
+]
+const fadeUp = { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }
+const services = [
+  { icon: Plane, title: 'Tailor-made holidays', body: 'Thoughtful itineraries built around the way you want to travel.' },
+  { icon: Users, title: 'Family & celebrations', body: 'Make time together easy, from the first idea to the last detail.' },
+  { icon: Building2, title: 'Corporate travel', body: 'Reliable coordination for business journeys and team travel.' },
+  { icon: Compass, title: 'Groups & experiences', body: 'Bring people together with a trip that feels seamless.' },
+]
+
+export default function Page() {
+  const [saved, setSaved] = useState<string[]>([])
+  const reduceMotion = useReducedMotion()
+  return <main className="min-h-screen overflow-x-clip bg-white text-[#263343]">
+    <div className="bg-[#ffad32] px-4 py-2 text-center text-[10px] font-extrabold uppercase tracking-[.19em] text-[#263343] sm:text-xs">A Mumbai-born travel studio · tailor-made for everywhere <span className="mx-2">✳</span><Link href="/contact" className="underline underline-offset-2">Start dreaming</Link></div>
+    <SiteHeader />
+    <section className="relative isolate flex min-h-[calc(100svh-110px)] items-center overflow-hidden bg-[#202c3a] text-white">
+      <img src="https://images.pexels.com/videos/31546637/pexels-photo-31546637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1920" alt="" className="absolute inset-0 z-0 size-full object-cover" />
+      <video className="hero-video absolute inset-0 z-0 size-full object-cover" autoPlay={!reduceMotion} muted loop playsInline preload="metadata" poster="https://images.pexels.com/videos/31546637/pexels-photo-31546637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1920" aria-hidden="true"><source src="/travezy-destination.mp4" type="video/mp4" /></video>
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(23,33,45,.82)_0%,rgba(23,33,45,.48)_48%,rgba(23,33,45,.1)_100%)]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17212d]/60 via-transparent to-[#17212d]/10" />
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pb-24 pt-20 sm:px-10 lg:px-14">
+        <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: .14 } } }} className="max-w-4xl">
+          <motion.p variants={fadeUp} transition={{ duration: .6 }} className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.24em] text-[#ffad32]"><span className="grid size-8 place-items-center rounded-full border border-white/30 bg-white/10"><Sparkles size={15} /></span> Travel should feel like you</motion.p>
+          <motion.h1 variants={fadeUp} transition={{ duration: .75 }} className="max-w-4xl font-serif text-[clamp(3.7rem,9vw,8.2rem)] leading-[.88] tracking-[-.065em]">The world is wide.<br /><span className="italic text-[#ffad32]">Go your own way.</span></motion.h1>
+          <motion.p variants={fadeUp} transition={{ duration: .6 }} className="mt-8 max-w-xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8">Not another off-the-shelf holiday. Tell us what matters to you; our Mumbai-based travel team will shape the details around it.</motion.p>
+          <motion.div variants={fadeUp} transition={{ duration: .6 }} className="mt-9 flex flex-wrap items-center gap-4"><Link href="/contact" className="group inline-flex h-14 items-center gap-3 rounded-full bg-[#ffad32] px-7 font-bold text-[#263343] transition duration-300 hover:bg-white">Let’s plan something <span className="grid size-8 place-items-center rounded-full bg-[#263343] text-[#ffad32] transition group-hover:translate-x-1"><ArrowRight size={16} /></span></Link><Link href="/journeys" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-4 text-sm font-semibold text-white backdrop-blur transition hover:border-[#ffad32] hover:text-[#ffad32]">Find inspiration <ArrowDown size={15} /></Link></motion.div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .75, duration: .6 }} className="mt-16 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">{[['✳', 'Made from scratch'], ['◉', 'Built around your budget'], ['↗', 'A real person in your corner']].map(([icon, label]) => <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/20 bg-[#202c3a]/35 px-4 py-3 backdrop-blur-md"><span className="text-lg text-[#ffad32]">{icon}</span><span className="text-xs font-semibold text-white/90 sm:text-sm">{label}</span></div>)}</motion.div>
+      </div>
+      <div className="absolute bottom-6 right-7 z-20 hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[.2em] text-white/70 lg:flex"><span className="h-px w-10 bg-white/60" /> Keep wandering <span className="text-[#ffad32]">↓</span></div>
+    </section>
+
+    <section className="px-5 py-20 sm:py-28 lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="text-xs font-extrabold uppercase tracking-[.2em] text-[#d93672]">A few places to begin</p><h2 className="mt-3 max-w-2xl font-serif text-4xl leading-tight tracking-[-.04em] sm:text-6xl">Journeys with room<br />for <span className="italic text-[#d93672]">your kind of magic.</span></h2></div><Link href="/journeys" className="inline-flex items-center gap-2 text-sm font-bold">Explore all journeys <ArrowUpRight size={16} /></Link></div><div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{destinations.map((place, index) => <motion.article key={place.slug} initial={reduceMotion ? false : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ delay: index * .06, duration: .45 }} className="group relative isolate min-h-[350px] overflow-hidden rounded-[1.6rem] bg-[#263343] text-white"><img src={place.image} alt={place.name} className="absolute inset-0 -z-10 size-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#182330]/90 via-[#182330]/15 to-transparent"/><button onClick={() => setSaved((current) => current.includes(place.slug) ? current.filter((item) => item !== place.slug) : [...current, place.slug])} aria-label={saved.includes(place.slug) ? 'Remove from saved journeys' : 'Save journey'} aria-pressed={saved.includes(place.slug)} className="absolute right-4 top-4 grid size-11 place-items-center rounded-full bg-white/20 backdrop-blur hover:bg-white/35"><Heart size={18} fill={saved.includes(place.slug) ? 'currentColor' : 'none'} /></button><div className="absolute inset-x-0 bottom-0 p-6"><p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#ffcf7b]">{place.tag}</p><h3 className="mt-2 font-serif text-3xl">{place.name}</h3><p className="mt-2 text-sm text-white/75">{place.place}</p><Link href={`/journeys/${place.slug}`} className="mt-5 inline-flex items-center gap-2 text-xs font-bold">Explore this journey <ArrowRight size={14} /></Link></div></motion.article>)}</div></div></section>
+
+    <section className="bg-[#f8f8f7] px-5 py-20 sm:py-24 lg:px-8"><div className="mx-auto max-w-7xl"><div className="max-w-2xl"><p className="text-xs font-extrabold uppercase tracking-[.2em] text-[#d93672]">The details, thoughtfully handled</p><h2 className="mt-4 font-serif text-4xl tracking-[-.04em] sm:text-6xl">Good trips start with <span className="italic text-[#d93672]">good listening.</span></h2><p className="mt-5 max-w-xl text-sm leading-7 text-[#66717d]">From the first conversation to the final boarding pass, we bring the pieces together so you can be present for the journey.</p></div><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{services.map(({ icon: Icon, title, body }, index) => <motion.article key={title} initial={reduceMotion ? false : { opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .08 }} className="rounded-[1.4rem] border border-[#263343]/10 bg-white p-6"><span className="grid size-12 place-items-center rounded-2xl bg-[#263343] text-[#ffad32]"><Icon size={21} /></span><h3 className="mt-5 font-serif text-2xl">{title}</h3><p className="mt-2 text-sm leading-6 text-[#66717d]">{body}</p></motion.article>)}</div><div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-2xl bg-[#263343] px-6 py-5 text-sm text-white"><span className="inline-flex items-center gap-2 font-semibold"><Check size={16} className="text-[#ffad32]"/> Hand-picked stays</span><span className="inline-flex items-center gap-2 font-semibold"><Check size={16} className="text-[#ffad32]"/> Flights and transfers</span><span className="inline-flex items-center gap-2 font-semibold"><Check size={16} className="text-[#ffad32]"/> Visa guidance</span><span className="inline-flex items-center gap-2 font-semibold"><Check size={16} className="text-[#ffad32]"/> A real travel expert</span></div></div></section>
+
+    <TripPlanner />
+    <section className="px-5 py-20 text-center sm:py-28"><span className="mx-auto grid size-14 place-items-center rounded-2xl bg-[#ffad32] text-[#263343]"><HeartHandshake size={24}/></span><p className="mt-6 text-xs font-extrabold uppercase tracking-[.2em] text-[#d93672]">Whenever you’re ready</p><h2 className="mx-auto mt-3 max-w-3xl font-serif text-4xl tracking-[-.04em] sm:text-6xl">Your next story could start anywhere.</h2><p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-[#66717d]">Tell us what you’re imagining. We’ll help you turn that first idea into a trip that feels unmistakably yours.</p><Link href="/contact" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d93672] px-7 py-4 text-sm font-bold text-white transition hover:bg-[#263343]">Talk to our team <ArrowRight size={16}/></Link></section>
+    <SiteFooter />
+  </main>
+}
