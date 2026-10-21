@@ -31,8 +31,8 @@ export default function Page() {
     <div className="bg-[#ffad32] px-4 py-2 text-center text-[10px] font-extrabold uppercase tracking-[.19em] text-[#263343] sm:text-xs">A Mumbai-born travel studio · tailor-made for everywhere <span className="mx-2">✳</span><Link href="/contact" className="underline underline-offset-2">Start dreaming</Link></div>
     <SiteHeader />
     <section className="relative isolate flex min-h-[calc(100svh-110px)] items-center overflow-hidden bg-[#202c3a] text-white">
-      <img src="https://images.pexels.com/videos/5538723/pexels-photo-5538723.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1920" alt="" className="absolute inset-0 z-0 size-full object-cover" />
-      <video className="hero-video absolute inset-0 z-0 size-full object-cover" autoPlay={!reduceMotion} muted loop playsInline preload="metadata" poster="https://images.pexels.com/videos/5538723/pexels-photo-5538723.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1920" aria-hidden="true"><source src="/travezy-takeoff.mp4" type="video/mp4" /></video>
+      <img src="/travezy-coastal-poster.jpg" alt="" className="absolute inset-0 z-0 size-full object-cover" style={{ objectPosition: 'center 55%' }} />
+      <video className="hero-video absolute inset-0 z-0 size-full object-cover" autoPlay={!reduceMotion} muted loop playsInline preload="metadata" poster="/travezy-coastal-poster.jpg" aria-hidden="true" style={{ objectPosition: 'center 55%' }}><source src="/travezy-coastal-journey.mp4" type="video/mp4" /></video>
       <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(23,33,45,.82)_0%,rgba(23,33,45,.48)_48%,rgba(23,33,45,.1)_100%)]" />
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17212d]/60 via-transparent to-[#17212d]/10" />
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pb-24 pt-20 sm:px-10 lg:px-14">
